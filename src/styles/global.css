@@ -1,0 +1,427 @@
+/* ==========================================================================
+   AI Finder — "Quiet Index" design tokens (see DESIGN.md)
+   One warm-neutral family + a single ember accent. Every colour, size,
+   radius, shadow and duration used by components comes from here.
+   ========================================================================== */
+
+:root {
+  /* ---- colour: foundation ---- */
+  --canvas: #f5f4f0;
+  --surface: #ffffff;
+  --surface-sunken: #eeece6;
+  --line: #e3e0d8;
+  --line-soft: rgb(26 25 23 / 0.06);
+  --line-strong: #ccc8be;
+  --control-border: #8f8b82;
+
+  /* ---- colour: text ---- */
+  --ink: #1a1917;
+  --ink-hover: #2e2c29;
+  --ink-2: #4b4944;
+  --ink-3: #686660;
+  --ink-disabled: #9c9a93;
+
+  /* ---- colour: the one accent ---- */
+  --accent: #b4471f;
+  --accent-hover: #9a3c19;
+  --accent-soft: #f8e7df;
+
+  /* ---- colour: functional ---- */
+  --error: #b42318;
+  --error-soft: #fbe9e7;
+  --error-line: #f1c4be;
+  --success: #2f6b4f;
+  --scrim: rgb(26 25 23 / 0.4);
+  --surface-glass: rgb(255 255 255 / 0.85);
+  --surface-glass-strong: rgb(255 255 255 / 0.96);
+  --canvas-glass: rgb(245 244 240 / 0.92);
+  --canvas-clear: rgb(245 244 240 / 0);
+  --accent-ring: 0 0 0 4px rgb(180 71 31 / 0.18);
+  --success-ring: 0 0 0 3px rgb(47 107 79 / 0.15);
+
+  /* ---- colour: footer (inverted) ---- */
+  --footer-bg: #1a1917;
+  --footer-text: #e9e7e1;
+  --footer-muted: #a3a1a8;
+  --footer-line: #34322e;
+
+  /* ---- type ---- */
+  --font-sans: 'Onest Variable', 'Onest', 'Segoe UI', system-ui, sans-serif;
+  --font-mono: 'Geist Mono Variable', 'Geist Mono', ui-monospace, 'Cascadia Mono', monospace;
+
+  --fs-xs: 0.75rem; /* 12 – tags */
+  --fs-caption: 0.8125rem; /* 13 – meta, data */
+  --fs-sm: 0.875rem; /* 14 – summaries, controls */
+  --fs-base: 1rem; /* 16 – body */
+  --fs-md: 1.125rem; /* 18 – lead, item titles */
+  --fs-lg: 1.375rem; /* 22 – sub headings */
+  --fs-heading: 1.75rem; /* 28 – section headings */
+  --fs-page: clamp(2.25rem, 1.6rem + 2.6vw, 3.5rem);
+  --fs-display: clamp(2.5rem, 1.6rem + 3.6vw, 4.5rem);
+
+  --lh-tight: 1.04;
+  --lh-snug: 1.3;
+  --lh-body: 1.6;
+
+  --tracking-display: -0.035em;
+  --tracking-heading: -0.02em;
+  --tracking-title: -0.01em;
+
+  /* ---- spacing: 4px base ---- */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-7: 32px;
+  --space-8: 40px;
+  --space-9: 56px;
+  --space-10: 80px;
+
+  /* ---- radii ---- */
+  --radius-xs: 6px;
+  --radius-sm: 10px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
+  --radius-xl: 32px;
+  --radius-pill: 9999px;
+
+  /* ---- elevation (tinted with ink) ---- */
+  --shadow-xs: 0 1px 2px rgb(26 25 23 / 0.05);
+  --shadow-sm: 0 1px 2px rgb(26 25 23 / 0.04), 0 4px 16px -6px rgb(26 25 23 / 0.08);
+  --inset-highlight: inset 0 1px 0 rgb(255 255 255 / 0.8);
+  --shadow-inset: inset 0 1px 2px rgb(26 25 23 / 0.06);
+  --glow: radial-gradient(60% 80% at 85% 0%, rgb(180 71 31 / 0.1), transparent 70%),
+    radial-gradient(50% 70% at 0% 100%, rgb(180 71 31 / 0.05), transparent 70%);
+  --shadow-search-hover: 0 1px 2px rgb(26 25 23 / 0.05), 0 6px 18px -8px rgb(26 25 23 / 0.14);
+  --shadow-md: 0 2px 4px rgb(26 25 23 / 0.04), 0 20px 40px -18px rgb(26 25 23 / 0.2);
+  --shadow-knob: 0 1px 2px rgb(26 25 23 / 0.25);
+  --shadow-lg: 0 4px 12px rgb(26 25 23 / 0.06), 0 32px 64px -24px rgb(26 25 23 / 0.32);
+
+  /* ---- interaction ---- */
+  --focus-ring: 0 0 0 2px var(--canvas), 0 0 0 4px var(--accent);
+  --focus-ring-inset: 0 0 0 2px var(--accent);
+  --ease: cubic-bezier(0.2, 0.8, 0.2, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --dur-fast: 120ms;
+  --dur: 180ms;
+  --dur-slow: 280ms;
+
+  /* ---- layout ---- */
+  --container: 1240px;
+  --gutter: clamp(16px, 4vw, 40px);
+  --header-h: 72px;
+  --control-h: 44px;
+  --control-h-sm: 40px;
+}
+
+/* ---- tablet: slightly tighter type and spacing ---- */
+@media (max-width: 960px) {
+  :root {
+    --fs-sm: 0.84375rem; /* 13.5 */
+    --fs-md: 1.0625rem; /* 17 */
+    --fs-lg: 1.25rem; /* 20 */
+    --fs-heading: 1.5rem; /* 24 */
+    --space-6: 20px;
+    --space-7: 28px;
+    --space-8: 36px;
+    --space-9: 44px;
+    --space-10: 64px;
+  }
+}
+
+/* ---- mobile: compact, so every row fits at 375px ---- */
+@media (max-width: 560px) {
+  :root {
+    --fs-xs: 0.6875rem; /* 11 */
+    --fs-caption: 0.75rem; /* 12 */
+    --fs-sm: 0.8125rem; /* 13 */
+    --fs-base: 0.9375rem; /* 15 */
+    --fs-md: 1rem; /* 16 */
+    --fs-lg: 1.125rem; /* 18 */
+    --fs-heading: 1.3125rem; /* 21 */
+    --fs-page: 2rem; /* 32 */
+    --fs-display: 2.125rem; /* 34 */
+    --space-4: 14px;
+    --space-5: 16px;
+    --space-6: 18px;
+    --space-7: 24px;
+    --space-8: 28px;
+    --space-9: 36px;
+    --space-10: 48px;
+    --control-h: 42px;
+  }
+}
+
+/* ---------- reset & base ---------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  overflow-x: clip;
+  -webkit-text-size-adjust: 100%;
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-height: 100dvh;
+  background: var(--canvas);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  font-size: var(--fs-base);
+  line-height: var(--lh-body);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  margin: 0;
+  font-weight: 600;
+  line-height: var(--lh-tight);
+  letter-spacing: var(--tracking-heading);
+  text-wrap: balance;
+}
+
+p {
+  margin: 0;
+  text-wrap: pretty;
+}
+
+a {
+  color: inherit;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+button,
+input,
+select {
+  font: inherit;
+  color: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+/* No native outlines anywhere (buttons, selects, inputs, links, dialog).
+   Keyboard focus is still clearly visible through the ember ring below,
+   which only appears for keyboard navigation (:focus-visible). */
+*,
+*:focus,
+*:focus-visible {
+  outline: 0;
+}
+
+:focus-visible {
+  box-shadow: var(--focus-ring);
+}
+
+/* Containers focused from code (e.g. <main tabindex="-1"> after a route
+   change) are not controls: Safari treats that programmatic focus as
+   :focus-visible, which drew the ring as a red line above the footer. */
+main[tabindex='-1']:focus-visible {
+  box-shadow: none;
+}
+
+html {
+  -webkit-tap-highlight-color: transparent;
+}
+
+::selection {
+  background: var(--accent-soft);
+  color: var(--ink);
+}
+
+/* ---------- utilities ---------- */
+.container {
+  width: 100%;
+  max-width: calc(var(--container) + var(--gutter) * 2);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+.visually-hidden {
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+/* machine data only: domains, numbers, dates */
+.mono {
+  font-family: var(--font-mono);
+  font-size: var(--fs-caption);
+  font-weight: 450;
+  letter-spacing: -0.01em;
+  font-variant-numeric: tabular-nums;
+}
+
+/* ---------- buttons ---------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  min-height: var(--control-h);
+  padding: 0 var(--space-5);
+  border: 1px solid var(--ink);
+  border-radius: var(--radius-pill);
+  background: var(--ink);
+  color: var(--surface);
+  font-size: 0.9375rem;
+  font-weight: 600;
+  line-height: 1;
+  text-decoration: none;
+  white-space: nowrap;
+  transition:
+    background-color var(--dur-fast) var(--ease),
+    border-color var(--dur-fast) var(--ease),
+    color var(--dur-fast) var(--ease),
+    transform var(--dur) var(--ease);
+}
+
+.btn:hover {
+  background: var(--ink-hover);
+  border-color: var(--ink-hover);
+}
+
+.btn:active {
+  transform: translateY(1px);
+}
+
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.btn[aria-busy='true'] {
+  cursor: progress;
+}
+
+.btn--ghost {
+  border-color: transparent;
+  background: var(--surface-sunken);
+  color: var(--ink);
+}
+
+.btn--ghost:hover {
+  border-color: transparent;
+  background: var(--line);
+}
+
+/* text link style for inline links */
+.link {
+  color: var(--ink);
+  font-weight: 600;
+  text-decoration: underline;
+  text-decoration-color: var(--line-strong);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 4px;
+  border-radius: 2px;
+  transition:
+    color var(--dur-fast) var(--ease),
+    text-decoration-color var(--dur-fast) var(--ease);
+}
+
+.link:hover {
+  color: var(--accent-hover);
+  text-decoration-color: currentColor;
+}
+
+/* page header panel shared by New AI and About (same look as the home hero) */
+.page-head {
+  position: relative;
+  margin-top: var(--space-6);
+  padding: var(--space-10) var(--space-9) var(--space-9);
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-xl);
+  background: var(--glow), var(--surface);
+  box-shadow: var(--shadow-sm), var(--inset-highlight);
+}
+
+.page-title {
+  font-size: var(--fs-page);
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: -0.045em;
+}
+
+.soft {
+  color: var(--ink-3);
+}
+
+.accent-dot {
+  color: var(--accent);
+}
+
+@media (max-width: 960px) {
+  .page-head {
+    padding: var(--space-9) var(--space-7) var(--space-7);
+  }
+}
+
+@media (max-width: 560px) {
+  .page-head {
+    margin-top: var(--space-4);
+    padding: var(--space-8) var(--space-5) var(--space-6);
+    border-radius: var(--radius-lg);
+  }
+}
+
+/* previous results while new ones load (filters changed) */
+.is-refreshing {
+  opacity: 0.5;
+  pointer-events: none;
+  transition: opacity var(--dur-slow) var(--ease);
+}
+
+/* small sentence-case label above a heading */
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--fs-caption);
+  font-weight: 500;
+  color: var(--ink-3);
+}
+
+.skip-link {
+  position: absolute;
+  top: -100px;
+  left: var(--space-4);
+  z-index: 100;
+  padding: var(--space-2) var(--space-4);
+  border-radius: var(--radius-sm);
+  background: var(--ink);
+  color: var(--surface);
+}
+
+.skip-link:focus {
+  top: var(--space-2);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

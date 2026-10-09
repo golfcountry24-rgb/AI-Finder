@@ -1,0 +1,197 @@
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  min-width: 0;
+  padding: var(--space-6);
+  border: 1px solid var(--line-soft);
+  border-radius: var(--radius-lg);
+  background: var(--surface);
+  box-shadow: var(--shadow-sm), var(--inset-highlight);
+  transition:
+    border-color var(--dur-slow) var(--ease),
+    box-shadow 400ms var(--ease),
+    transform 400ms var(--ease);
+}
+
+.card:hover {
+  border-color: var(--line);
+  box-shadow: var(--shadow-md);
+  transform: translateY(-4px);
+}
+
+.top {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding-right: 44px; /* room for the visit button */
+}
+
+.ident {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.name {
+  font-size: var(--fs-md);
+  line-height: var(--lh-snug);
+  letter-spacing: var(--tracking-title);
+}
+
+.open {
+  all: unset;
+  cursor: pointer;
+  overflow-wrap: anywhere;
+}
+
+/* stretch the button over the whole card */
+.open::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+}
+
+.open:focus-visible {
+  box-shadow: none; /* the ring is drawn around the whole card by ::after */
+}
+
+.open:focus-visible::after {
+  box-shadow: var(--focus-ring);
+}
+
+.domain {
+  overflow: hidden;
+  color: var(--ink-3);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.summary {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  color: var(--ink-2);
+  font-size: var(--fs-sm);
+  line-height: var(--lh-body);
+}
+
+.muted {
+  color: var(--ink-3);
+}
+
+.bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--space-2) var(--space-3);
+  margin-top: auto;
+  padding-top: var(--space-4);
+  border-top: 1px solid var(--line);
+}
+
+.meta {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  min-width: 0;
+  color: var(--ink-3);
+  font-family: var(--font-mono);
+  font-size: var(--fs-xs);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.built {
+  overflow: hidden;
+  padding-right: var(--space-2);
+  border-right: 1px solid var(--line);
+  font-family: var(--font-sans);
+  text-overflow: ellipsis;
+}
+
+.fresh {
+  flex: none;
+  padding: 2px 8px;
+  border-radius: var(--radius-pill);
+  background: var(--accent-soft);
+  color: var(--accent);
+  font-family: var(--font-sans);
+  font-size: var(--fs-xs);
+  font-weight: 600;
+}
+
+.visit {
+  position: absolute;
+  z-index: 1;
+  top: var(--space-6);
+  right: var(--space-5);
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  border: 0;
+  border-radius: 50%;
+  background: var(--surface-sunken);
+  color: var(--ink);
+  transition:
+    border-color var(--dur-fast) var(--ease),
+    background-color var(--dur-fast) var(--ease),
+    color var(--dur-fast) var(--ease),
+    transform var(--dur) var(--ease);
+}
+
+.visit svg {
+  width: 14px;
+  height: 14px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  transition: transform var(--dur) var(--ease);
+}
+
+.visit:hover {
+  background: var(--accent);
+  color: var(--surface);
+}
+
+.visit:hover svg {
+  transform: translate(1px, -1px);
+}
+
+@media (max-width: 560px) {
+  .card {
+    gap: var(--space-3);
+    padding: var(--space-5);
+  }
+
+  .top {
+    padding-right: 40px;
+  }
+
+  .summary {
+    line-height: 1.55;
+  }
+
+  .meta {
+    gap: 6px;
+  }
+
+  .built {
+    max-width: 9ch;
+  }
+
+  .visit {
+    top: var(--space-5);
+    right: var(--space-4);
+    width: 36px;
+    height: 36px;
+  }
+}

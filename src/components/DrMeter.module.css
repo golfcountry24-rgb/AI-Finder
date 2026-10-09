@@ -1,0 +1,48 @@
+.meter {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  color: var(--ink-3);
+  font-size: var(--fs-xs);
+}
+
+.label {
+  font-weight: 500;
+}
+
+.value {
+  min-width: 2ch;
+  color: var(--ink);
+  font-family: var(--font-mono);
+  font-size: var(--fs-caption);
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+}
+
+.bar {
+  display: inline-flex;
+  gap: 2px;
+}
+
+.bar span {
+  width: 3px;
+  height: 10px;
+  border-radius: 1px;
+  background: var(--line);
+  transform-origin: bottom;
+}
+
+.bar .on {
+  background: var(--ink-2);
+}
+
+@media (max-width: 560px) {
+  .meter {
+    gap: 6px;
+  }
+
+  .bar span {
+    width: 2px;
+    height: 9px;
+  }
+}

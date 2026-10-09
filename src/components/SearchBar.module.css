@@ -1,0 +1,114 @@
+.search {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  width: 100%;
+  min-height: 60px;
+  padding: 0 var(--space-2) 0 var(--space-6);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-pill);
+  background: var(--surface);
+  box-shadow: var(--shadow-sm);
+  transition:
+    border-color var(--dur-fast) var(--ease),
+    box-shadow var(--dur) var(--ease);
+}
+
+.search:hover {
+  border-color: var(--line-strong);
+  box-shadow: var(--shadow-search-hover);
+}
+
+.search:focus-within {
+  border-color: var(--accent);
+  box-shadow: var(--accent-ring);
+}
+
+.icon {
+  width: 20px;
+  height: 20px;
+  flex: none;
+  fill: none;
+  stroke: var(--ink-3);
+  stroke-width: 2;
+  stroke-linecap: round;
+  transition: stroke var(--dur-fast) var(--ease);
+}
+
+.search:focus-within .icon {
+  stroke: var(--ink);
+}
+
+.search input {
+  flex: 1;
+  width: 0; /* no intrinsic input width — the field never pushes the form wider */
+  min-width: 0;
+  height: 58px;
+  border: 0;
+  background: transparent;
+  font-size: var(--fs-md);
+  outline: none;
+}
+
+.search input:focus-visible {
+  box-shadow: none;
+}
+
+.search input::placeholder {
+  color: var(--ink-3);
+}
+
+/* native clear button hidden — we render our own */
+.search input::-webkit-search-cancel-button {
+  appearance: none;
+}
+
+.clear {
+  flex: none;
+  min-height: var(--control-h-sm);
+  padding: 0 var(--space-4);
+  border: 0;
+  border-radius: var(--radius-pill);
+  background: var(--surface-sunken);
+  color: var(--ink-2);
+  font-size: var(--fs-sm);
+  font-weight: 500;
+  transition:
+    background-color var(--dur-fast) var(--ease),
+    border-color var(--dur-fast) var(--ease),
+    color var(--dur-fast) var(--ease);
+}
+
+.clear:hover {
+  background: var(--ink);
+  color: var(--surface);
+}
+
+.spinner {
+  width: 16px;
+  height: 16px;
+  flex: none;
+  border: 2px solid var(--line);
+  border-top-color: var(--accent);
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (max-width: 560px) {
+  .search {
+    min-height: 54px;
+    padding-left: var(--space-5);
+  }
+
+  .search input {
+    height: 52px;
+    font-size: 16px; /* prevents iOS zoom on focus */
+  }
+}

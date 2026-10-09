@@ -1,0 +1,55 @@
+.logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  border-radius: var(--radius-sm);
+  text-decoration: none;
+}
+
+.mark {
+  width: 30px;
+  height: 30px;
+  flex: none;
+}
+
+.bg {
+  fill: var(--ink);
+}
+
+.lens {
+  stroke: var(--canvas);
+}
+
+.word {
+  font-size: 1.1875rem;
+  font-weight: 650;
+  letter-spacing: -0.03em;
+}
+
+.slash {
+  margin-inline: 1px;
+  color: var(--accent);
+  font-weight: 500;
+}
+
+.inverted .bg {
+  fill: var(--footer-text);
+}
+
+.inverted .lens {
+  stroke: var(--footer-bg);
+}
+
+.handle {
+  stroke: var(--accent);
+}
+
+/* the magnifier tilts gently on hover (CSS only) */
+.glass {
+  transform-origin: 14.5px 14.5px;
+  transition: transform var(--dur-slow) var(--ease);
+}
+
+.logo:hover .glass {
+  transform: rotate(-12deg);
+}
