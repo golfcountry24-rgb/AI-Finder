@@ -1,0 +1,51 @@
+# Builds the site and publishes dist/ to GitHub Pages on every push to main.
+# One-time setup: Settings → Pages → Build and deployment → Source: "GitHub Actions".
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    env:
+      # The site lives at https://<user>.github.io/<repo>/
+      VITE_BASE: /${{ github.event.repository.name }}/
+      VITE_SITE_URL: https://${{ github.repository_owner }}.github.io
+      # GitHub Pages has no PHP, and FreeSerp's own CORS header is broken,
+      # so the browser goes through the PHP proxy on the Semalt demo server.
+      # Replace with your Cloudflare Worker URL (deploy/cloudflare-worker.js) if needed.
+      VITE_API_BASE: https://ws-58.ws.semalt.dev/api/freeserp.php
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run check        # lint + tests + build
+      - run: rm -rf dist/api      # PHP proxies can't run on Pages
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
